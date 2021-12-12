@@ -38,9 +38,11 @@
                                 <td class='p-2'>{{ recipe['name'] }}</td>
                                 <td class='p-2'>{{ recipe['under_thirty'] }}</td>
                                 <td class='p-2'>
-                                    <a class='px-2' href='/recipe/{{recipe["recipe_id"]}}'>View instructions</a>
-                                    <a class='px-2' href='/recipe/edit/{{recipe["recipe_id"]}}'>Edit</a>
-                                    <a class='px-2' href='/recipe/delete/{{recipe["recipe_id"]}}'>Delete</a>
+                                    <a class='px-2' href='/recipe/{{recipe["id"]}}'>View instructions</a>
+                                    {% if session['user_id'] == recipe['creator_id'] %}
+                                    <a class='px-2' href='/recipe/edit/{{recipe["id"]}}'>Edit</a>
+                                    <a class='px-2' href='/recipe/delete/{{recipe["id"]}}'>Delete</a>
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% endfor %}
