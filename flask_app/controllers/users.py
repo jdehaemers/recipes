@@ -3,6 +3,7 @@ from flask import render_template, redirect, flash, session, request
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 from flask_app.models.user import User
+from flask_app.models.recipe import Recipe
 
 @app.route('/')
 def index():
@@ -47,7 +48,7 @@ def dashboard():
     if 'logged_in' not in session:
         return redirect('/')
     data = { 'id' : session['user_id']}
-    recipes = User.get_user_recipes(data)
+    recipes = Recipe.get_all()
     return render_template('dashboard.html', recipes=recipes)
 
 @app.route('/logout')
