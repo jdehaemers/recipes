@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>{{recipe['name']}} Instructions</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-4 d-flex justfy-content-between">
+            <div class="col">
+                <h1>Welcome {{session['user_first']}}!</h1>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a href="/dashboard" class="p-2">Dashboard</a>
+                <a href="/logout" class="p-2">Logout</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">   
+                <div class="row mt-4 text-success">
+                    <h2>{{recipe['name']}}</h2>
+                </div>
+                <div class="row">
+                    <table class="table table-secondary table-striped">
+                        <tr>
+                            <th>Description</td>
+                            <td>{{ recipe['description'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Under 30 minutes</td>
+                            <td style="white-space: pre-wrap;">{{ recipe['under_thirty'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Instructions</td>
+                            <td style="white-space: pre-wrap;">{{ recipe['instructions'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date Made</td>
+                            <td>{{ recipe['date_made'] }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

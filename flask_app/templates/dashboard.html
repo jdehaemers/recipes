@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>{{session['user_first']}}'s Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-4 d-flex justfy-content-between">
+            <div class="col">
+                <h1>Welcome {{session['user_first']}}!</h1>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a href="/recipe/new" class="p-2">Create Recipe</a>
+                <a href="/logout" class="p-2">Logout</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">   
+                <div class="row">
+                    <h5>These are the recipes:</h5>
+                </div>
+                <div class="row">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th class='p-2' scope='col'>Name</th>
+                                <th class='p-2' scope='col'>Under 30 Minutes?</th>
+                                <th class='p-2' scope='col'>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class='table-light table-striped'>
+                            {% for recipe in recipes %}
+                            <tr>
+                                <td class='p-2'>{{ recipe['name'] }}</td>
+                                <td class='p-2'>{{ recipe['under_thirty'] }}</td>
+                                <td class='p-2'>
+                                    <a class='px-2' href='/recipe/{{recipe["recipe_id"]}}'>View instructions</a>
+                                    <a class='px-2' href='/recipe/edit/{{recipe["recipe_id"]}}'>Edit</a>
+                                    <a class='px-2' href='/recipe/delete/{{recipe["recipe_id"]}}'>Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
